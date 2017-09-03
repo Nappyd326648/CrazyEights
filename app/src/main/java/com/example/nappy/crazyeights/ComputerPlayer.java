@@ -18,8 +18,8 @@ public class ComputerPlayer {
             int tempRank = ((Card)hand.get(i)).getRank();
             int tempSuit = ((Card)hand.get(i)).getSuit();
 
-            if(tempRank != 8){
-                if (rank == 8){
+            if(tempRank != 13 || tempRank != 14 ){
+                if (rank == 13 || rank == 14){
                     if(suit == tempSuit){
                         play = tempId;
                     }
@@ -31,7 +31,8 @@ public class ComputerPlayer {
         if (play == 0){
             for (i = 0; i < hand.size(); ++i){
                 tempId = ((Card)hand.get(i)).getId();
-                if(tempId == 108 || tempId == 208 || tempId == 308 || tempId ==408){
+                if(tempId == 113 || tempId == 213 || tempId == 313 || tempId == 413 ||
+                        tempId == 114 || tempId == 214 || tempId == 314 || tempId == 414 ){
                     play = tempId;
                 }
             }
@@ -40,31 +41,31 @@ public class ComputerPlayer {
     }
     public int chooseSuit(List<Card> hand){
         short suit = 100;
-        int numDiamonds = 0;
-        int numClubs = 0;
-        int numHearts = 0;
-        int numSpades = 0;
+        int numBlue = 0;
+        int numGreen = 0;
+        int numRed = 0;
+        int numYellow = 0;
 
         for (int i = 0; i < hand.size(); ++i){
             int tempRank = ((Card)hand.get(i)).getRank();
             int tempSuit = ((Card)hand.get(i)).getSuit();
             if(tempRank != 8){
                 if (tempSuit == 100){
-                    ++numDiamonds;
+                    ++numBlue;
                 }else if (tempSuit == 200){
-                    ++numClubs;
+                    ++numGreen;
                 }else if (tempSuit == 300){
-                    ++numHearts;
+                    ++numRed;
                 }else if (tempSuit == 400){
-                    ++numSpades;
+                    ++numYellow;
                 }
             }
         }
-        if (numClubs > numDiamonds && numClubs > numHearts && numClubs > numSpades ){
+        if (numGreen > numBlue && numGreen > numRed && numGreen > numYellow ){
             suit = 200;
-        } else if (numHearts > numDiamonds && numHearts > numClubs && numHearts > numSpades ){
+        } else if (numRed > numBlue && numRed > numGreen && numRed > numYellow ){
             suit = 300;
-        } else if(numSpades > numDiamonds && numSpades > numClubs && numSpades > numHearts ){
+        } else if(numYellow > numBlue && numYellow > numGreen && numYellow > numRed ){
             suit = 400;
         }
         return suit;
